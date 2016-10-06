@@ -18,26 +18,25 @@ void rotate(vector<vector<int>> &matrix)
     // 控制共有几个环
     for(long layer = 0; layer < n / 2; layer++)
     {
-        long first = layer; // 每一圈开始位置
-        long last = n - 1 - layer; // 每一圈结束位置
+        long begin = layer; // 每一圈开始位置
+        long end = n - 1 - layer; // 每一圈结束位置
         //旋转第layer层
-        for(long i = first; i < last; i++)
+        for(long i = begin; i < end; i++)
         {
-            long offset = i - first; 
+            long offset = i - begin;
             //保存上面的值
-            int top = matrix[first][i];
+            int top = matrix[begin][i];
             //左边转到上面
-            matrix[first][i] = matrix[last-offset][first];
+            matrix[begin][i] = matrix[end-offset][begin];
             //下面转到左边
-            matrix[last-offset][first] = matrix[last][last-offset];
+            matrix[end-offset][begin] = matrix[end][end-offset];
             //右边转到下面
-            matrix[last][last-offset] = matrix[i][last];
+            matrix[end][end-offset] = matrix[i][end];
             //上面转到右边
-            matrix[i][last] = top;
+            matrix[i][end] = top;
         }
     }
 }
-
 
 int main(int argc, const char * argv[])
 {
